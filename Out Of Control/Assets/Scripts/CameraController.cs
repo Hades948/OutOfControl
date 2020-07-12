@@ -14,7 +14,7 @@ public class CameraController : MonoBehaviour {
         Vector3 playerPos = player.transform.position;
         
         float x = playerPos.x;
-        x = Mathf.Clamp(x, 0.0f, 1000.0f);
+        x = Mathf.Clamp(x, 0.0f, 200.0f);
         transform.position = new Vector3(x, transform.position.y, transform.position.z);
     }
 }

@@ -11,7 +11,11 @@ public class ControlsLabelController : MonoBehaviour {
         uiText = gameObject.GetComponent<Text>();
     }
     void Update() {
-        uiText.text = "Left: "  + currentLeftKeyCode.keyCode  + "\n"
+        string left = currentLeftKeyCode.keyCode.ToString();
+        if (currentLeftKeyCode.keyCode == KeyCode.Alpha7) {
+            left = "7";
+        }
+        uiText.text = "Left: "  + left  + "\n"
                     + "Right: " + currentRightKeyCode.keyCode + "\n"
                     + "Jump: "  + currentJumpKeyCode.keyCode;
     }

@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
     private const float DEADZONE = 0.1f;
     public float jumpPower;
     public float speed;
+    public AudioClip oofClip, boingClip;
     public HealthScriptableObject health;
     public KeyCodeScriptableObject currentLeftKeyCode, currentRightKeyCode, currentJumpKeyCode;
 
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour {
     private SpriteRenderer spriteRenderer;
     public Sprite hurtSprite;
     private Animator animator;
+    private AudioSource audioSource;
     private GameObject platforms;
     private GameObject enemies;
     private Vector3 initialPosition;
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour {
         playerCollider = gameObject.GetComponent<BoxCollider2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         animator = gameObject.GetComponent<Animator>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         platforms = GameObject.Find("Platforms");
         enemies = GameObject.Find("Enemies");
 
@@ -70,21 +73,27 @@ public class PlayerController : MonoBehaviour {
         // Jumping movement
         if (Input.GetKey(currentJumpKeyCode.keyCode) && !inAir) {
             rigidBody.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
+            audioSource.clip = boingClip;
+            audioSource.Play();
         }
         animator.SetBool("inAir", inAir);
 
         // Check enemy collisions
         if (!isHurt) {
             // TODO: This could be done with callbacks a bit nicer.  Not needed for jam, but better practice.
-            foreach (Transform t in enemies.transform) {
-                if (playerCollider.IsTouching(t.gameObject.GetComponent<Collider2D>())) {
-                    health.value--;
-                    timeOfEnemyCollision = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-                    isHurt = true;
-                    rigidBody.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
-                    animator.enabled = false;
-                    spriteRenderer.sprite = hurtSprite;
-                    break;
+            foreach (Transform t1 in enemies.transform) {
+                foreach (Transform t2 in t1) {
+                    if (playerCollider.IsTouching(t2.gameObject.GetComponent<Collider2D>())) {
+                        health.value--;
+                        timeOfEnemyCollision = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+                        isHurt = true;
+                        rigidBody.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
+                        animator.enabled = false;
+                        spriteRenderer.sprite = hurtSprite;
+                        audioSource.clip = oofClip;
+                        audioSource.Play();
+                        break;
+                    }
                 }
             }
         } else {
@@ -100,13 +109,29 @@ public class PlayerController : MonoBehaviour {
             }
         }
         
-        // Check for death
+        // Check for death and respawn
+        if (transform.position.y < -25.0f) {
+            audioSource.clip = oofClip;
+            audioSource.Play();
+        }
         if (health.value <= 0 || transform.position.y < -25.0f) {
             transform.position = initialPosition;
             health.value = health.initialValue;
             rigidBody.velocity = Vector2.zero;
             spriteRenderer.color = new Color(1, 1, 1, 1);
             isHurt = false;
+            animator.enabled = true;
+
+            // Respawn Fly men
+            foreach (Transform t1 in enemies.transform) {
+                if (t1.gameObject.name != "Fly Men") continue;
+
+                foreach (Transform t2 in t1) {
+                    t2.gameObject.GetComponent<FlyManController>().respawn();
+                }
+
+                break;
+            }
         }
     }
 }

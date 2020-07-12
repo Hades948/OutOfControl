@@ -47,12 +47,17 @@
   <ItemGroup>
      <Compile Include="Assets\Scriptable Objects\HealthScriptableObject.cs" />
      <Compile Include="Assets\Scriptable Objects\KeyCodeScriptableObject.cs" />
+     <Compile Include="Assets\Scripts\AudioController.cs" />
+     <Compile Include="Assets\Scripts\BlackFadeController.cs" />
+     <Compile Include="Assets\Scripts\ButtonController.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\ControlChangePointController.cs" />
      <Compile Include="Assets\Scripts\ControlsLabelController.cs" />
+     <Compile Include="Assets\Scripts\CreditsController.cs" />
      <Compile Include="Assets\Scripts\FlyManController.cs" />
      <Compile Include="Assets\Scripts\HealthLabelController.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\PortalController.cs" />
      <Compile Include="Assets\Scripts\SpikeManController.cs" />
      <Compile Include="Assets\Scripts\WingManController.cs" />
  <Reference Include="UnityEngine">

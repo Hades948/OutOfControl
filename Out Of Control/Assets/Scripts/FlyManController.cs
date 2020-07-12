@@ -6,6 +6,7 @@ public class FlyManController : MonoBehaviour {
     public float speed;
     public float jumpHeight;
     private Vector3 jumpPower;
+    private Vector3 initialPosition;
     private Rigidbody2D rigidBody;
     private Collider2D flyManCollider;
     private Animator animator;
@@ -27,6 +28,8 @@ public class FlyManController : MonoBehaviour {
                 break;
             }
         }
+
+        initialPosition = transform.position;
     }
 
     void FixedUpdate() {
@@ -51,5 +54,11 @@ public class FlyManController : MonoBehaviour {
 
     public void OnBecameVisible() {
         hasSpawned = true;
+    }
+
+    public void respawn() {
+        hasSpawned = false;
+        transform.position = initialPosition;
+        rigidBody.velocity = Vector2.zero;
     }
 }
