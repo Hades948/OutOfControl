@@ -8,16 +8,25 @@ public class FlyManController : MonoBehaviour {
     private Vector3 jumpPower;
     private Rigidbody2D rigidBody;
     private Collider2D flyManCollider;
+    private Animator animator;
     private GameObject platforms;
 
     private bool hasSpawned = false;
 
     void Start() {
         jumpPower = new Vector3(1.0f, jumpHeight, 1.0f);
-
-        flyManCollider = gameObject.GetComponent<BoxCollider2D>();
+        
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
+        animator = gameObject.GetComponent<Animator>();
         platforms = GameObject.Find("Platforms");
+
+        // Iterate through object children to find feet collider.
+        foreach (Transform t in transform) {
+            if (t.gameObject.name == "Fly Man Feet Collider") {
+                flyManCollider = t.gameObject.GetComponent<BoxCollider2D>();
+                break;
+            }
+        }
     }
 
     void FixedUpdate() {
@@ -36,6 +45,8 @@ public class FlyManController : MonoBehaviour {
         if (!inAir) {
             rigidBody.AddForce(jumpPower);
         }
+
+        animator.SetBool("inAir", inAir);
     }
 
     public void OnBecameVisible() {

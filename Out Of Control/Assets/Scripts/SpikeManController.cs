@@ -9,12 +9,17 @@ public class SpikeManController : MonoBehaviour {
     private Vector3 positionLeft;
     private Vector3 positionRight;
     private Vector3 targetPosition;
+    private Animator animator;
+    private const int LEFT = 0;
+    private const int RIGHT = 1;
 
 
     void Start() {
         positionLeft = new Vector3(transform.position.x - width, transform.position.y, transform.position.z);
         positionRight = new Vector3(transform.position.x + width, transform.position.y, transform.position.z);
         targetPosition = positionLeft;
+
+        animator = gameObject.GetComponent<Animator>();
     }
 
     void FixedUpdate() {
@@ -23,8 +28,10 @@ public class SpikeManController : MonoBehaviour {
         if (transform.position == targetPosition) {
             if (targetPosition == positionLeft) {
                 targetPosition = positionRight;
+                animator.SetInteger("Direction", RIGHT);
             } else if (targetPosition == positionRight) {
                 targetPosition = positionLeft;
+                animator.SetInteger("Direction", LEFT);
             }
         }
     }
