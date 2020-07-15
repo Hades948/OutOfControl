@@ -52,7 +52,7 @@
      <Compile Include="Assets\Scripts\ButtonController.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\ControlChangePointController.cs" />
-     <Compile Include="Assets\Scripts\ControlsLabelController.cs" />
+     <Compile Include="Assets\Scripts\ControlLabelController.cs" />
      <Compile Include="Assets\Scripts\CreditsController.cs" />
      <Compile Include="Assets\Scripts\FlyManController.cs" />
      <Compile Include="Assets\Scripts\HealthLabelController.cs" />
