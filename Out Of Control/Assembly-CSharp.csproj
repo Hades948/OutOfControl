@@ -45,11 +45,13 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scriptable Objects\GameInfoScriptableObject.cs" />
      <Compile Include="Assets\Scriptable Objects\HealthScriptableObject.cs" />
      <Compile Include="Assets\Scriptable Objects\KeyCodeScriptableObject.cs" />
      <Compile Include="Assets\Scripts\AudioController.cs" />
      <Compile Include="Assets\Scripts\BlackFadeController.cs" />
-     <Compile Include="Assets\Scripts\ButtonController.cs" />
+     <Compile Include="Assets\Scripts\Button Controllers\PauseButtonController.cs" />
+     <Compile Include="Assets\Scripts\Button Controllers\QuitButtonController.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\ControlChangePointController.cs" />
      <Compile Include="Assets\Scripts\ControlLabelController.cs" />
