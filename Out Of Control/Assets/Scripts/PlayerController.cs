@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
     public AudioClip oofClip, boingClip;
     public HealthScriptableObject health;
     public KeyCodeScriptableObject currentLeftKeyCode, currentRightKeyCode, currentJumpKeyCode;
+    public GameInfoScriptableObject gameInfo;
 
     private Rigidbody2D rigidBody;
     private Collider2D playerCollider;
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour {
     private GameObject platforms;
     private GameObject enemies;
     private Vector3 initialPosition;
+    private Vector2 prePauseVelocity;
 
     private long timeOfEnemyCollision = -1;
     private bool isHurt = false;
@@ -60,9 +62,10 @@ public class PlayerController : MonoBehaviour {
             animator.SetInteger("direction", IDLE);
         }
 
+        // Test if in air
         bool inAir = true;
-        foreach (Transform t1 in platforms.transform) {
-            foreach (Transform t2 in t1) {//add comments
+        foreach (Transform t1 in platforms.transform) { // Iterate over platforms
+            foreach (Transform t2 in t1) { // Find ground collider within each platform
                 if (t2.gameObject.name == "Ground Collider" && playerFeetCollider.IsTouching(t2.gameObject.GetComponent<Collider2D>())) {
                     inAir = false;
                     break;
@@ -133,5 +136,17 @@ public class PlayerController : MonoBehaviour {
                 break;
             }
         }
+    }
+
+    public void OnGamePause() {
+        prePauseVelocity = rigidBody.velocity;
+        rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
+        animator.enabled = false;
+    }
+
+    public void OnGameUnpause() {
+        rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        rigidBody.velocity = prePauseVelocity;
+        animator.enabled = true;
     }
 }

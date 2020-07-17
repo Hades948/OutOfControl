@@ -12,6 +12,7 @@ public class SpikeManController : MonoBehaviour {
     private Animator animator;
     private const int LEFT = 0;
     private const int RIGHT = 1;
+    private bool isPaused;
 
 
     void Start() {
@@ -23,6 +24,7 @@ public class SpikeManController : MonoBehaviour {
     }
 
     void FixedUpdate() {
+        if (isPaused) return;
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
 
         if (transform.position == targetPosition) {
@@ -34,5 +36,15 @@ public class SpikeManController : MonoBehaviour {
                 animator.SetInteger("Direction", LEFT);
             }
         }
+    }
+
+    public void OnGamePaused() {
+        isPaused = true;
+        animator.enabled = false;
+    }
+
+    public void OnGameUnpaused() {
+        isPaused = false;
+        animator.enabled = true;
     }
 }

@@ -11,8 +11,10 @@ public class FlyManController : MonoBehaviour {
     private Collider2D flyManCollider;
     private Animator animator;
     private GameObject platforms;
+    private Vector2 prePauseVelocity;
 
     private bool hasSpawned = false;
+    private bool isPaused = false;
 
     void Start() {
         jumpPower = new Vector3(1.0f, jumpHeight, 1.0f);
@@ -34,6 +36,7 @@ public class FlyManController : MonoBehaviour {
 
     void FixedUpdate() {
         if (!hasSpawned) return;
+        if (isPaused) return;
         
         transform.position = new Vector3(transform.position.x + speed * Time.deltaTime, transform.position.y, transform.position.z);
 
@@ -60,5 +63,19 @@ public class FlyManController : MonoBehaviour {
         hasSpawned = false;
         transform.position = initialPosition;
         rigidBody.velocity = Vector2.zero;
+    }
+
+    public void OnGamePause() {
+        prePauseVelocity = rigidBody.velocity;
+        rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
+        animator.enabled = false;
+        isPaused = true;
+    }
+
+    public void OnGameUnpause() {
+        rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        rigidBody.velocity = prePauseVelocity;
+        animator.enabled = true;
+        isPaused = false;
     }
 }

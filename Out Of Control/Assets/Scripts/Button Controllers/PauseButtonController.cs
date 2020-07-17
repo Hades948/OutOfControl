@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PauseButtonController : MonoBehaviour {
+    public GameEvent OnGamePauseEvent, OnGameUnpauseEvent;
     public GameInfoScriptableObject gameInfo;
 
     public void OnButtonClick() {
-        gameInfo.isPaused = true;//TODO This could probably be done with an event system instead.  I want to explore that route before proceeding.
+        if (gameInfo.isPaused) {
+            OnGameUnpauseEvent.Raise();
+            gameInfo.isPaused = false;
+        } else {
+            OnGamePauseEvent.Raise();
+            gameInfo.isPaused = true;
+        }
     }
 }

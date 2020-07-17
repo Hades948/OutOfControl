@@ -45,6 +45,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Events\GameEvent.cs" />
+     <Compile Include="Assets\Events\GameEventListener.cs" />
      <Compile Include="Assets\Scriptable Objects\GameInfoScriptableObject.cs" />
      <Compile Include="Assets\Scriptable Objects\HealthScriptableObject.cs" />
      <Compile Include="Assets\Scriptable Objects\KeyCodeScriptableObject.cs" />
@@ -57,7 +59,9 @@
      <Compile Include="Assets\Scripts\ControlLabelController.cs" />
      <Compile Include="Assets\Scripts\CreditsController.cs" />
      <Compile Include="Assets\Scripts\FlyManController.cs" />
+     <Compile Include="Assets\Scripts\GameUIController.cs" />
      <Compile Include="Assets\Scripts\HealthDisplayController.cs" />
+     <Compile Include="Assets\Scripts\PauseUIController.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PortalController.cs" />
      <Compile Include="Assets\Scripts\SpikeManController.cs" />

@@ -12,6 +12,7 @@ public class WingManController : MonoBehaviour {
     private Vector3 positionBelow;
     private Vector3 targetPosition;
     private Animator animator;
+    private bool isPaused;
 
 
     void Start() {
@@ -24,9 +25,11 @@ public class WingManController : MonoBehaviour {
     }
 
     void FixedUpdate() {
+        if (isPaused) return; // TODO Use rigidbody on enemies.  Update this when that happens.
+
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
 
-        if (equateFloats(transform.position.y, targetPosition.y, .1f)) {
+        if (transform.position == targetPosition) {
             if (targetPosition == positionAbove) {
                 targetPosition = positionBelow;
                 animator.speed = SPEED_DOWN;
@@ -37,7 +40,13 @@ public class WingManController : MonoBehaviour {
         }
     }
 
-    public static bool equateFloats(float f1, float f2, float tolerance) {
-        return Abs(f1 - f2) < tolerance;
+    public void OnGamePaused() {
+        isPaused = true;
+        animator.enabled = false;
+    }
+
+    public void OnGameUnpaused() {
+        isPaused = false;
+        animator.enabled = true;
     }
 }

@@ -72,6 +72,8 @@ GameObject:
   - component: {fileID: 6057886999168043963}
   - component: {fileID: 6057886999168043964}
   - component: {fileID: 6057886999168043965}
+  - component: {fileID: 438067175900407470}
+  - component: {fileID: 2155428910560403098}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -212,6 +214,7 @@ MonoBehaviour:
   currentRightKeyCode: {fileID: 11400000, guid: 060fe9d7afed05441b868df519df92d3,
     type: 2}
   currentJumpKeyCode: {fileID: 11400000, guid: c175758525441034587291a0a052bb3c, type: 2}
+  gameInfo: {fileID: 11400000, guid: 0ac6e3a9befc1d942b701274ba096202, type: 2}
   hurtSprite: {fileID: 21300000, guid: 69b2cd64e6fbc4a4e9c6619e17e6f293, type: 3}
 --- !u!95 &6057886999168043964
 Animator:
@@ -328,3 +331,57 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &438067175900407470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6057886999168043958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed94084534883db438b7af683c416cda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: fc0cc529556c57c41903866a41909a16, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6057886999168043963}
+        m_MethodName: OnGamePause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2155428910560403098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6057886999168043958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed94084534883db438b7af683c416cda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 557f3ac78e9a2d9438cbdc0232e7a15b, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6057886999168043963}
+        m_MethodName: OnGameUnpause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
