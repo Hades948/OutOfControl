@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PauseUIController : MonoBehaviour {
-    Canvas canvas;
+    private Canvas canvas;
+
     void Start() {
         canvas = gameObject.GetComponent<Canvas>();
         canvas.enabled = false;
@@ -14,7 +15,7 @@ public class PauseUIController : MonoBehaviour {
         canvas.enabled = true;
     }
 
-    public void OngameUnpaused() {
+    public void OnGameUnpaused() {
         canvas.enabled = false;
     }
 }

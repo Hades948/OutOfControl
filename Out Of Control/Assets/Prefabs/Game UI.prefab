@@ -1115,6 +1115,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 451d6867c79d5f24fb9b77efb36da48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnGamePauseEvent: {fileID: 11400000, guid: fc0cc529556c57c41903866a41909a16, type: 2}
-  OnGameUnpauseEvent: {fileID: 11400000, guid: 557f3ac78e9a2d9438cbdc0232e7a15b, type: 2}
-  gameInfo: {fileID: 11400000, guid: 0ac6e3a9befc1d942b701274ba096202, type: 2}
+  gameManager: {fileID: 11400000, guid: 0ac6e3a9befc1d942b701274ba096202, type: 2}

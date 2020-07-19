@@ -3,17 +3,23 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - AudioController
     - BlackFadeController
-    - ButtonController
     - CameraController
     - ControlChangePointController
-    - ControlsLabelController
+    - ControlLabelController
     - CreditsController
     - FlyManController
-    - HealthLabelController
+    - GameEvent
+    - GameEventListener
+    - GameInfoScriptableObject
+    - GameUIController
+    - HealthDisplayController
     - HealthScriptableObject
     - KeyCodeScriptableObject
+    - PauseButtonController
+    - PauseUIController
     - PlayerController
     - PortalController
+    - QuitButtonController
     - SpikeManController
     - WingManController
     Unity.2D.Animation.Editor.dll:
@@ -36,6 +42,9 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
+    UnityEditor.UI.dll:
+    - UnityEditor.UI.ButtonEditor
+    - UnityEditor.UI.ImageEditor
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -71,21 +80,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11296}
     - Class: 114
-      Script: {instanceID: 11462}
+      Script: {instanceID: 11464}
     - Class: 114
-      Script: {instanceID: 11516}
+      Script: {instanceID: 11518}
     - Class: 114
-      Script: {instanceID: 12180}
+      Script: {instanceID: 12186}
     - Class: 114
-      Script: {instanceID: 12880}
+      Script: {instanceID: 12892}
     - Class: 114
-      Script: {instanceID: 13622}
+      Script: {instanceID: 13634}
     - Class: 114
-      Script: {instanceID: 13642}
+      Script: {instanceID: 13654}
     - Class: 114
-      Script: {instanceID: 13674}
+      Script: {instanceID: 13686}
     - Class: 114
-      Script: {instanceID: 14256}
+      Script: {instanceID: 14268}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -140,37 +149,53 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11296}
     - Class: 114
-      Script: {instanceID: 11344}
+      Script: {instanceID: 11326}
     - Class: 114
-      Script: {instanceID: 11462}
+      Script: {instanceID: 11346}
     - Class: 114
-      Script: {instanceID: 11516}
+      Script: {instanceID: 11464}
     - Class: 114
-      Script: {instanceID: 11816}
+      Script: {instanceID: 11518}
     - Class: 114
-      Script: {instanceID: 11960}
+      Script: {instanceID: 11646}
     - Class: 114
-      Script: {instanceID: 12180}
+      Script: {instanceID: 11674}
     - Class: 114
-      Script: {instanceID: 12296}
+      Script: {instanceID: 11822}
     - Class: 114
-      Script: {instanceID: 12688}
+      Script: {instanceID: 11966}
     - Class: 114
-      Script: {instanceID: 12764}
+      Script: {instanceID: 12186}
     - Class: 114
-      Script: {instanceID: 12944}
+      Script: {instanceID: 12268}
     - Class: 114
-      Script: {instanceID: 13316}
+      Script: {instanceID: 12650}
     - Class: 114
-      Script: {instanceID: 13460}
+      Script: {instanceID: 12696}
     - Class: 114
-      Script: {instanceID: 13630}
+      Script: {instanceID: 12738}
+    - Class: 114
+      Script: {instanceID: 12774}
+    - Class: 114
+      Script: {instanceID: 12792}
+    - Class: 114
+      Script: {instanceID: 12892}
+    - Class: 114
+      Script: {instanceID: 12956}
+    - Class: 114
+      Script: {instanceID: 13328}
+    - Class: 114
+      Script: {instanceID: 13472}
+    - Class: 114
+      Script: {instanceID: 13634}
     - Class: 114
       Script: {instanceID: 13642}
     - Class: 114
-      Script: {instanceID: 13686}
+      Script: {instanceID: 13654}
     - Class: 114
-      Script: {instanceID: 14256}
+      Script: {instanceID: 14098}
+    - Class: 114
+      Script: {instanceID: 14268}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -227,35 +252,51 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11296}
     - Class: 114
-      Script: {instanceID: 11344}
+      Script: {instanceID: 11326}
     - Class: 114
-      Script: {instanceID: 11462}
+      Script: {instanceID: 11346}
     - Class: 114
-      Script: {instanceID: 11516}
+      Script: {instanceID: 11464}
     - Class: 114
-      Script: {instanceID: 11816}
+      Script: {instanceID: 11518}
     - Class: 114
-      Script: {instanceID: 12180}
+      Script: {instanceID: 11646}
     - Class: 114
-      Script: {instanceID: 12296}
+      Script: {instanceID: 11674}
     - Class: 114
-      Script: {instanceID: 12688}
+      Script: {instanceID: 11822}
     - Class: 114
-      Script: {instanceID: 12764}
+      Script: {instanceID: 12186}
     - Class: 114
-      Script: {instanceID: 12944}
+      Script: {instanceID: 12268}
     - Class: 114
-      Script: {instanceID: 13316}
+      Script: {instanceID: 12650}
     - Class: 114
-      Script: {instanceID: 13460}
+      Script: {instanceID: 12696}
     - Class: 114
-      Script: {instanceID: 13630}
+      Script: {instanceID: 12738}
+    - Class: 114
+      Script: {instanceID: 12774}
+    - Class: 114
+      Script: {instanceID: 12792}
+    - Class: 114
+      Script: {instanceID: 12892}
+    - Class: 114
+      Script: {instanceID: 12956}
+    - Class: 114
+      Script: {instanceID: 13328}
+    - Class: 114
+      Script: {instanceID: 13472}
+    - Class: 114
+      Script: {instanceID: 13634}
     - Class: 114
       Script: {instanceID: 13642}
     - Class: 114
-      Script: {instanceID: 13686}
+      Script: {instanceID: 13654}
     - Class: 114
-      Script: {instanceID: 14256}
+      Script: {instanceID: 14098}
+    - Class: 114
+      Script: {instanceID: 14268}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -312,35 +353,51 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11296}
     - Class: 114
-      Script: {instanceID: 11344}
+      Script: {instanceID: 11326}
     - Class: 114
-      Script: {instanceID: 11462}
+      Script: {instanceID: 11346}
     - Class: 114
-      Script: {instanceID: 11516}
+      Script: {instanceID: 11464}
     - Class: 114
-      Script: {instanceID: 11816}
+      Script: {instanceID: 11518}
     - Class: 114
-      Script: {instanceID: 12180}
+      Script: {instanceID: 11646}
     - Class: 114
-      Script: {instanceID: 12296}
+      Script: {instanceID: 11674}
     - Class: 114
-      Script: {instanceID: 12688}
+      Script: {instanceID: 11822}
     - Class: 114
-      Script: {instanceID: 12764}
+      Script: {instanceID: 12186}
     - Class: 114
-      Script: {instanceID: 12944}
+      Script: {instanceID: 12268}
     - Class: 114
-      Script: {instanceID: 13316}
+      Script: {instanceID: 12650}
     - Class: 114
-      Script: {instanceID: 13460}
+      Script: {instanceID: 12696}
     - Class: 114
-      Script: {instanceID: 13630}
+      Script: {instanceID: 12738}
+    - Class: 114
+      Script: {instanceID: 12774}
+    - Class: 114
+      Script: {instanceID: 12792}
+    - Class: 114
+      Script: {instanceID: 12892}
+    - Class: 114
+      Script: {instanceID: 12956}
+    - Class: 114
+      Script: {instanceID: 13328}
+    - Class: 114
+      Script: {instanceID: 13472}
+    - Class: 114
+      Script: {instanceID: 13634}
     - Class: 114
       Script: {instanceID: 13642}
     - Class: 114
-      Script: {instanceID: 13686}
+      Script: {instanceID: 13654}
     - Class: 114
-      Script: {instanceID: 14256}
+      Script: {instanceID: 14098}
+    - Class: 114
+      Script: {instanceID: 14268}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -396,6 +453,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CameraController
+  - hash:
+      serializedVersion: 2
+      Hash: 00689126ccaa8290a9546e5876ffb99c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HealthDisplayController
   - hash:
       serializedVersion: 2
       Hash: 497cf23c9128728a255e515edf610c24
@@ -474,6 +537,18 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: GridLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PauseUIController
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameEvent
   - hash:
       serializedVersion: 2
       Hash: 8aa3d6ccbcb54ee8db6c1229854adaaa
@@ -608,16 +683,16 @@ ScriptsOnlyBuild:
     className: ControlTrack
   - hash:
       serializedVersion: 2
+      Hash: cd85c771bf098b3e960485b9f240e017
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameEventListener
+  - hash:
+      serializedVersion: 2
       Hash: 8dc90e648ac06f43bdd31ac9fa8f4579
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Selectable
-  - hash:
-      serializedVersion: 2
-      Hash: 38fbbe71c1b626140928f535b3690082
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ControlsLabelController
   - hash:
       serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
@@ -644,6 +719,12 @@ ScriptsOnlyBuild:
     className: SpriteSkinEntity
   - hash:
       serializedVersion: 2
+      Hash: e21d823a6e2ecc3b68920f88f5995f3d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PauseButtonController
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -656,6 +737,12 @@ ScriptsOnlyBuild:
     className: FlyManController
   - hash:
       serializedVersion: 2
+      Hash: a2e3b91dd0a669eddd3317a0a00ed1bf
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ControlLabelController
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
@@ -666,6 +753,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: WingManController
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameUIController
   - hash:
       serializedVersion: 2
       Hash: 4fd8bf02e3089425d3502e26c44ba31a
@@ -752,7 +845,7 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
-      Hash: c5e340e60c352ca580fc90bb58f6f4ea
+      Hash: 58d044a7158ce4e9d1a833daa3476441
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
@@ -785,7 +878,7 @@ ScriptsOnlyBuild:
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: ButtonController
+    className: QuitButtonController
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -812,12 +905,6 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: 00689126ccaa8290a9546e5876ffb99c
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: HealthLabelController
-  - hash:
-      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -834,6 +921,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TextMeshPro
+  - hash:
+      serializedVersion: 2
+      Hash: a9cec5743ae0885b5f1073d528a7e589
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameInfoScriptableObject
   - hash:
       serializedVersion: 2
       Hash: 3165968ba45c74472d279ba04455fccb
@@ -931,4 +1024,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Level 3.unity
   - Assets/Scenes/Credits.unity
   playerPath: C:/Users/Tyler/Documents/code_n_stuff/Unity/out_of_control_gmtk_2020/Out
-    Of Control/Builds/Jam Release 4K/Out Of Control.exe
+    Of Control/Builds/test Exit Game button on pause menu/Out Of Control.exe

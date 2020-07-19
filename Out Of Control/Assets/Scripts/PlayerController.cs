@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour {
     public AudioClip oofClip, boingClip;
     public HealthScriptableObject health;
     public KeyCodeScriptableObject currentLeftKeyCode, currentRightKeyCode, currentJumpKeyCode;
-    public GameInfoScriptableObject gameInfo;
 
     private Rigidbody2D rigidBody;
     private Collider2D playerCollider;
