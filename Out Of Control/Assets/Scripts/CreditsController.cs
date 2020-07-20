@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CreditsController : MonoBehaviour {
-    public float speed;
+    public float Speed;
 
     void Update() {
-        transform.position = new Vector3(transform.position.x, transform.position.y + speed, transform.position.z);
+        transform.position = new Vector3(transform.position.x, transform.position.y + Speed * Time.deltaTime, transform.position.z);
     }
 }

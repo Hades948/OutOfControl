@@ -461,50 +461,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 9110447525872317339}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &113906498
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 113906499}
-  - component: {fileID: 113906500}
-  m_Layer: 0
-  m_Name: Input Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &113906499
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113906498}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 17
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &113906500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113906498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c948e6481a593cc46a02d245cc5aff7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 11400000, guid: 0ac6e3a9befc1d942b701274ba096202, type: 2}
 --- !u!1 &119063442
 GameObject:
   m_ObjectHideFlags: 0
@@ -2600,13 +2556,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf0ed538ddeb324f94c8852063e1941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newLeftButton: 97
-  newRightButton: 108
-  newJumpButton: 32
-  currentLeftSO: {fileID: 11400000, guid: 8aab37037b2385145a50bd141a523e5d, type: 2}
-  currentRightSO: {fileID: 11400000, guid: 060fe9d7afed05441b868df519df92d3, type: 2}
-  currentJumpSO: {fileID: 11400000, guid: c175758525441034587291a0a052bb3c, type: 2}
-  uiText: {fileID: 1909498097}
+  NewLeftButton: 97
+  NewRightButton: 108
+  NewJumpButton: 32
+  LeftKeyCode: {fileID: 11400000, guid: 8aab37037b2385145a50bd141a523e5d, type: 2}
+  RightKeyCode: {fileID: 11400000, guid: 060fe9d7afed05441b868df519df92d3, type: 2}
+  JumpKeyCode: {fileID: 11400000, guid: c175758525441034587291a0a052bb3c, type: 2}
+  TextComponent: {fileID: 1909498097}
 --- !u!95 &999252500
 Animator:
   serializedVersion: 3
@@ -4230,13 +4186,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf0ed538ddeb324f94c8852063e1941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newLeftButton: 108
-  newRightButton: 97
-  newJumpButton: 32
-  currentLeftSO: {fileID: 11400000, guid: 8aab37037b2385145a50bd141a523e5d, type: 2}
-  currentRightSO: {fileID: 11400000, guid: 060fe9d7afed05441b868df519df92d3, type: 2}
-  currentJumpSO: {fileID: 11400000, guid: c175758525441034587291a0a052bb3c, type: 2}
-  uiText: {fileID: 1589900553}
+  NewLeftButton: 108
+  NewRightButton: 97
+  NewJumpButton: 32
+  LeftKeyCode: {fileID: 11400000, guid: 8aab37037b2385145a50bd141a523e5d, type: 2}
+  RightKeyCode: {fileID: 11400000, guid: 060fe9d7afed05441b868df519df92d3, type: 2}
+  JumpKeyCode: {fileID: 11400000, guid: c175758525441034587291a0a052bb3c, type: 2}
+  TextComponent: {fileID: 1589900553}
 --- !u!95 &1689813868
 Animator:
   serializedVersion: 3
@@ -6587,6 +6543,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d42d2c4c795f404ba68d9dfdb715d6d, type: 3}
+--- !u!1001 &7352369876335041267
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7352369876447627696, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352369876447627696, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352369876447627696, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352369876447627696, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352369876447627696, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352369876447627696, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352369876447627696, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352369876447627696, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352369876447627696, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352369876447627696, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352369876447627696, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352369876447627697, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_Name
+      value: Input Manager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a631043f29ec946439c164606cde7583, type: 3}
 --- !u!1001 &7608396519492427905
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6890,6 +6915,44 @@ PrefabInstance:
       propertyPath: uiText
       value: 
       objectReference: {fileID: 222988496}
+    - target: {fileID: 9110447525821051989, guid: 16ddf19bd7d6a964ca410e9ccaa38f14,
+        type: 3}
+      propertyPath: TextComponent
+      value: 
+      objectReference: {fileID: 222988496}
+    - target: {fileID: 9110447525821051989, guid: 16ddf19bd7d6a964ca410e9ccaa38f14,
+        type: 3}
+      propertyPath: NewLeftButton
+      value: 98
+      objectReference: {fileID: 0}
+    - target: {fileID: 9110447525821051989, guid: 16ddf19bd7d6a964ca410e9ccaa38f14,
+        type: 3}
+      propertyPath: NewRightButton
+      value: 109
+      objectReference: {fileID: 0}
+    - target: {fileID: 9110447525821051989, guid: 16ddf19bd7d6a964ca410e9ccaa38f14,
+        type: 3}
+      propertyPath: NewJumpButton
+      value: 106
+      objectReference: {fileID: 0}
+    - target: {fileID: 9110447525821051989, guid: 16ddf19bd7d6a964ca410e9ccaa38f14,
+        type: 3}
+      propertyPath: LeftKeyCode
+      value: 
+      objectReference: {fileID: 11400000, guid: 8aab37037b2385145a50bd141a523e5d,
+        type: 2}
+    - target: {fileID: 9110447525821051989, guid: 16ddf19bd7d6a964ca410e9ccaa38f14,
+        type: 3}
+      propertyPath: RightKeyCode
+      value: 
+      objectReference: {fileID: 11400000, guid: 060fe9d7afed05441b868df519df92d3,
+        type: 2}
+    - target: {fileID: 9110447525821051989, guid: 16ddf19bd7d6a964ca410e9ccaa38f14,
+        type: 3}
+      propertyPath: JumpKeyCode
+      value: 
+      objectReference: {fileID: 11400000, guid: c175758525441034587291a0a052bb3c,
+        type: 2}
     - target: {fileID: 9110447525821051991, guid: 16ddf19bd7d6a964ca410e9ccaa38f14,
         type: 3}
       propertyPath: m_LocalPosition.x

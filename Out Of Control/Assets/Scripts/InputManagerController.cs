@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InputManagerController : MonoBehaviour {
-    public GameManagerScriptableObject gameManager;
+    public GameManagerScriptableObject GameManager;
 
     void Update() {
         if (Input.GetKeyUp(KeyCode.Escape)) {
-            gameManager.toggleIsPaused();
+            GameManager.ToggleIsPaused();
         }
     }
 }

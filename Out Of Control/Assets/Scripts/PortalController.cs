@@ -29,7 +29,7 @@ public class PortalController : MonoBehaviour {
         } else if (elapsed < 3000) {
             uiText.text = "1";
         } else {
-            blackFadeController.fadeToNextScene();
+            blackFadeController.FadeToNextScene();
         }
     }
 

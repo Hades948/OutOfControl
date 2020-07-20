@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e6cd5e7102e6f341a7bdace19261441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentKeyCode: {fileID: 11400000, guid: 060fe9d7afed05441b868df519df92d3, type: 2}
+  BoundKeyCode: {fileID: 11400000, guid: 060fe9d7afed05441b868df519df92d3, type: 2}
 --- !u!1 &2742032856809973303
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e6cd5e7102e6f341a7bdace19261441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentKeyCode: {fileID: 11400000, guid: 8aab37037b2385145a50bd141a523e5d, type: 2}
+  BoundKeyCode: {fileID: 11400000, guid: 8aab37037b2385145a50bd141a523e5d, type: 2}
 --- !u!1 &4133014036223408993
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,7 +418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e6cd5e7102e6f341a7bdace19261441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentKeyCode: {fileID: 11400000, guid: c175758525441034587291a0a052bb3c, type: 2}
+  BoundKeyCode: {fileID: 11400000, guid: c175758525441034587291a0a052bb3c, type: 2}
 --- !u!1 &4167140567665755352
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,7 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8482f5f08bbc4e54eb709aebc62c1f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 11400000, guid: 30710ebb8d81ce946a28631cfd139b19, type: 2}
+  PlayerHealth: {fileID: 11400000, guid: 30710ebb8d81ce946a28631cfd139b19, type: 2}
 --- !u!1 &4978178511736822386
 GameObject:
   m_ObjectHideFlags: 0
@@ -1115,4 +1115,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 451d6867c79d5f24fb9b77efb36da48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 11400000, guid: 0ac6e3a9befc1d942b701274ba096202, type: 2}
+  GameManager: {fileID: 11400000, guid: 0ac6e3a9befc1d942b701274ba096202, type: 2}

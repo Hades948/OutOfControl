@@ -1114,6 +1114,75 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 234959907}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &571526071
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7352369876447627696, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352369876447627696, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352369876447627696, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352369876447627696, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352369876447627696, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352369876447627696, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352369876447627696, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352369876447627696, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352369876447627696, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352369876447627696, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352369876447627696, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352369876447627697, guid: a631043f29ec946439c164606cde7583,
+        type: 3}
+      propertyPath: m_Name
+      value: Input Manager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a631043f29ec946439c164606cde7583, type: 3}
 --- !u!4 &581948400 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5585575860532952196, guid: 969dd8c8299ed2944acb5e6c7d5f7a28,
@@ -4166,6 +4235,44 @@ PrefabInstance:
     - target: {fileID: 9110447525821051989, guid: 16ddf19bd7d6a964ca410e9ccaa38f14,
         type: 3}
       propertyPath: newJumpButton
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 9110447525821051989, guid: 16ddf19bd7d6a964ca410e9ccaa38f14,
+        type: 3}
+      propertyPath: TextComponent
+      value: 
+      objectReference: {fileID: 510499953}
+    - target: {fileID: 9110447525821051989, guid: 16ddf19bd7d6a964ca410e9ccaa38f14,
+        type: 3}
+      propertyPath: LeftKeyCode
+      value: 
+      objectReference: {fileID: 11400000, guid: 8aab37037b2385145a50bd141a523e5d,
+        type: 2}
+    - target: {fileID: 9110447525821051989, guid: 16ddf19bd7d6a964ca410e9ccaa38f14,
+        type: 3}
+      propertyPath: RightKeyCode
+      value: 
+      objectReference: {fileID: 11400000, guid: 060fe9d7afed05441b868df519df92d3,
+        type: 2}
+    - target: {fileID: 9110447525821051989, guid: 16ddf19bd7d6a964ca410e9ccaa38f14,
+        type: 3}
+      propertyPath: JumpKeyCode
+      value: 
+      objectReference: {fileID: 11400000, guid: c175758525441034587291a0a052bb3c,
+        type: 2}
+    - target: {fileID: 9110447525821051989, guid: 16ddf19bd7d6a964ca410e9ccaa38f14,
+        type: 3}
+      propertyPath: NewLeftButton
+      value: 97
+      objectReference: {fileID: 0}
+    - target: {fileID: 9110447525821051989, guid: 16ddf19bd7d6a964ca410e9ccaa38f14,
+        type: 3}
+      propertyPath: NewRightButton
+      value: 115
+      objectReference: {fileID: 0}
+    - target: {fileID: 9110447525821051989, guid: 16ddf19bd7d6a964ca410e9ccaa38f14,
+        type: 3}
+      propertyPath: NewJumpButton
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 9110447525821051991, guid: 16ddf19bd7d6a964ca410e9ccaa38f14,

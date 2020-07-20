@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa031e8893d8924e9b1e5832adfec22, type: 3}
   m_Name: CurrentJumpKeyCode
   m_EditorClassIdentifier: 
-  keyCode: 0
-  initialKeyCode: 32
+  CurrentKeyCode: 0
+  InitialKeyCode: 32

@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameUIController : MonoBehaviour {
-    Canvas canvas;
+    private Canvas UICanvas;
     void Start() {
-        canvas = gameObject.GetComponent<Canvas>();
+        UICanvas = gameObject.GetComponent<Canvas>();
     }
 
     public void OnGamePaused() {
-        canvas.enabled = false;
+        UICanvas.enabled = false;
     }
 
     public void OngameUnpaused() {
-        canvas.enabled = true;
+        UICanvas.enabled = true;
     }
 }

@@ -5,15 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GameManager", menuName = "ScriptableObjects/GameManager")]
 public class GameManagerScriptableObject : ScriptableObject {
     public GameEvent OnGamePauseEvent, OnGameUnpauseEvent;
-    public bool isPaused = false;
+    private bool IsPaused = false;
 
-    public void toggleIsPaused() {
-        if (isPaused) {
+    public void ToggleIsPaused() {
+        if (IsPaused) {
             OnGameUnpauseEvent.Raise();
-            isPaused = false;
+            IsPaused = false;
         } else {
             OnGamePauseEvent.Raise();
-            isPaused = true;
+            IsPaused = true;
         }
     }
 }

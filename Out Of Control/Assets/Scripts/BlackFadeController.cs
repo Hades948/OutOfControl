@@ -2,11 +2,11 @@
 using UnityEngine.SceneManagement;
 
 public class BlackFadeController : MonoBehaviour {
-    public void fadeToNextScene() {
+    public void FadeToNextScene() {
         gameObject.GetComponent<Animator>().SetTrigger("Fade Out");
     }
 
-    public void onFadeComplete() {
+    public void OnFadeComplete() {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

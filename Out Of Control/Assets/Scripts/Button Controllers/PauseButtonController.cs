@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PauseButtonController : MonoBehaviour {
-    public GameManagerScriptableObject gameManager;
+    public GameManagerScriptableObject GameManager;
 
     public void OnButtonClick() {
-        gameManager.toggleIsPaused();
+        GameManager.ToggleIsPaused();
     }
 }

@@ -2,6 +2,6 @@
 
 [CreateAssetMenu(fileName = "KeyCode", menuName = "ScriptableObjects/KeyCode")]
 public class KeyCodeScriptableObject : ScriptableObject {
-    public KeyCode keyCode;
-    public KeyCode initialKeyCode;
+    public KeyCode CurrentKeyCode;
+    public KeyCode InitialKeyCode;
 }

@@ -41,19 +41,19 @@ public class PlayerController : MonoBehaviour {
         initialPosition = transform.position;
 
         // Set up SOs
-        health.value = health.initialValue;
-        currentLeftKeyCode.keyCode = currentLeftKeyCode.initialKeyCode;
-        currentRightKeyCode.keyCode = currentRightKeyCode.initialKeyCode;
-        currentJumpKeyCode.keyCode = currentJumpKeyCode.initialKeyCode;
+        health.Value = health.InitialValue;
+        currentLeftKeyCode.CurrentKeyCode = currentLeftKeyCode.InitialKeyCode;
+        currentRightKeyCode.CurrentKeyCode = currentRightKeyCode.InitialKeyCode;
+        currentJumpKeyCode.CurrentKeyCode = currentJumpKeyCode.InitialKeyCode;
     }
 
     void FixedUpdate() {
         // Horizontal movement
-        if (Input.GetKey(currentRightKeyCode.keyCode)) {
+        if (Input.GetKey(currentRightKeyCode.CurrentKeyCode)) {
             // Move right.
             rigidBody.AddForce(transform.right * speed, ForceMode2D.Impulse);
             animator.SetInteger("direction", RIGHT);
-        } else if (Input.GetKey(currentLeftKeyCode.keyCode)) {
+        } else if (Input.GetKey(currentLeftKeyCode.CurrentKeyCode)) {
             // Move left.
             rigidBody.AddForce(-transform.right * speed, ForceMode2D.Impulse);
             animator.SetInteger("direction", LEFT);
@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         // Jumping movement
-        if (Input.GetKey(currentJumpKeyCode.keyCode) && !inAir) {
+        if (Input.GetKey(currentJumpKeyCode.CurrentKeyCode) && !inAir) {
             rigidBody.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
             audioSource.clip = boingClip;
             audioSource.Play();
@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour {
             foreach (Transform t1 in enemies.transform) {
                 foreach (Transform t2 in t1) {
                     if (playerCollider.IsTouching(t2.gameObject.GetComponent<Collider2D>())) {
-                        health.value--;
+                        health.Value--;
                         timeOfEnemyCollision = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
                         isHurt = true;
                         rigidBody.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
@@ -116,9 +116,9 @@ public class PlayerController : MonoBehaviour {
             audioSource.clip = oofClip;
             audioSource.Play();
         }
-        if (health.value <= 0 || transform.position.y < -25.0f) {
+        if (health.Value <= 0 || transform.position.y < -25.0f) {
             transform.position = initialPosition;
-            health.value = health.initialValue;
+            health.Value = health.InitialValue;
             rigidBody.velocity = Vector2.zero;
             spriteRenderer.color = new Color(1, 1, 1, 1);
             isHurt = false;
