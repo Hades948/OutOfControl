@@ -4,68 +4,68 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
+    public float JumpPower;
+    public float Speed;
+    public AudioClip HurtClip, JumpClip;
+    public HealthScriptableObject Health;
+    public KeyCodeScriptableObject LeftKeyCode, RightKeyCode, JumpKeyCode;
+    public Sprite HurtSprite;
+
+    private Rigidbody2D RigidbodyComponent;
+    private Collider2D PlayerCollider;
+    private Collider2D PlayerFeetCollider;
+    private SpriteRenderer SpriteRendererComponent;
+    private Animator AnimatorComponent;
+    private AudioSource AudioClipSource;
+    private GameObject Platforms;
+    private GameObject Enemies;
+    private Vector3 InitialPosition;
+    private Vector2 PrePauseVelocity;
+
+    private long TimeOfEnemyCollision = -1;
+    private bool IsHurt = false;
+
     private const float DEADZONE = 0.1f;
-    public float jumpPower;
-    public float speed;
-    public AudioClip oofClip, boingClip;
-    public HealthScriptableObject health;
-    public KeyCodeScriptableObject currentLeftKeyCode, currentRightKeyCode, currentJumpKeyCode;
-
-    private Rigidbody2D rigidBody;
-    private Collider2D playerCollider;
-    private Collider2D playerFeetCollider;
-    private SpriteRenderer spriteRenderer;
-    public Sprite hurtSprite;
-    private Animator animator;
-    private AudioSource audioSource;
-    private GameObject platforms;
-    private GameObject enemies;
-    private Vector3 initialPosition;
-    private Vector2 prePauseVelocity;
-
-    private long timeOfEnemyCollision = -1;
-    private bool isHurt = false;
-
     private const int LEFT = -1, IDLE = 0, RIGHT = 1;
 
     void Start() {
-        rigidBody = gameObject.GetComponent<Rigidbody2D>();
-        playerFeetCollider = GameObject.Find("Player Feet Collider").gameObject.GetComponent<BoxCollider2D>();
-        playerCollider = gameObject.GetComponent<BoxCollider2D>();
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        animator = gameObject.GetComponent<Animator>();
-        audioSource = gameObject.GetComponent<AudioSource>();
-        platforms = GameObject.Find("Platforms");
-        enemies = GameObject.Find("Enemies");
+        RigidbodyComponent = gameObject.GetComponent<Rigidbody2D>();
+        PlayerFeetCollider = GameObject.Find("Player Feet Collider").gameObject.GetComponent<BoxCollider2D>();
+        PlayerCollider = gameObject.GetComponent<BoxCollider2D>();
+        SpriteRendererComponent = gameObject.GetComponent<SpriteRenderer>();
+        AnimatorComponent = gameObject.GetComponent<Animator>();
+        AudioClipSource = gameObject.GetComponent<AudioSource>();
+        Platforms = GameObject.Find("Platforms");
+        Enemies = GameObject.Find("Enemies");
 
-        initialPosition = transform.position;
+        InitialPosition = transform.position;
 
         // Set up SOs
-        health.Value = health.InitialValue;
-        currentLeftKeyCode.CurrentKeyCode = currentLeftKeyCode.InitialKeyCode;
-        currentRightKeyCode.CurrentKeyCode = currentRightKeyCode.InitialKeyCode;
-        currentJumpKeyCode.CurrentKeyCode = currentJumpKeyCode.InitialKeyCode;
+        Health.Value = Health.InitialValue;
+        LeftKeyCode.CurrentKeyCode = LeftKeyCode.InitialKeyCode;
+        RightKeyCode.CurrentKeyCode = RightKeyCode.InitialKeyCode;
+        JumpKeyCode.CurrentKeyCode = JumpKeyCode.InitialKeyCode;
     }
 
     void FixedUpdate() {
         // Horizontal movement
-        if (Input.GetKey(currentRightKeyCode.CurrentKeyCode)) {
+        if (Input.GetKey(RightKeyCode.CurrentKeyCode)) {
             // Move right.
-            rigidBody.AddForce(transform.right * speed, ForceMode2D.Impulse);
-            animator.SetInteger("direction", RIGHT);
-        } else if (Input.GetKey(currentLeftKeyCode.CurrentKeyCode)) {
+            RigidbodyComponent.AddForce(transform.right * Speed, ForceMode2D.Impulse);
+            AnimatorComponent.SetInteger("direction", RIGHT);
+        } else if (Input.GetKey(LeftKeyCode.CurrentKeyCode)) {
             // Move left.
-            rigidBody.AddForce(-transform.right * speed, ForceMode2D.Impulse);
-            animator.SetInteger("direction", LEFT);
+            RigidbodyComponent.AddForce(-transform.right * Speed, ForceMode2D.Impulse);
+            AnimatorComponent.SetInteger("direction", LEFT);
         } else {
-            animator.SetInteger("direction", IDLE);
+            AnimatorComponent.SetInteger("direction", IDLE);
         }
 
         // Test if in air
         bool inAir = true;
-        foreach (Transform t1 in platforms.transform) { // Iterate over platforms
+        foreach (Transform t1 in Platforms.transform) { // Iterate over platforms
             foreach (Transform t2 in t1) { // Find ground collider within each platform
-                if (t2.gameObject.name == "Ground Collider" && playerFeetCollider.IsTouching(t2.gameObject.GetComponent<Collider2D>())) {
+                if (t2.gameObject.name == "Ground Collider" && PlayerFeetCollider.IsTouching(t2.gameObject.GetComponent<Collider2D>())) {
                     inAir = false;
                     break;
                 }
@@ -73,59 +73,59 @@ public class PlayerController : MonoBehaviour {
         }
 
         // Jumping movement
-        if (Input.GetKey(currentJumpKeyCode.CurrentKeyCode) && !inAir) {
-            rigidBody.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
-            audioSource.clip = boingClip;
-            audioSource.Play();
+        if (Input.GetKey(JumpKeyCode.CurrentKeyCode) && !inAir) {
+            RigidbodyComponent.AddForce(transform.up * JumpPower, ForceMode2D.Impulse);
+            AudioClipSource.clip = JumpClip;
+            AudioClipSource.Play();
         }
-        animator.SetBool("inAir", inAir);
+        AnimatorComponent.SetBool("inAir", inAir);
 
         // Check enemy collisions
-        if (!isHurt) {
+        if (!IsHurt) {
             // TODO: This could be done with callbacks a bit nicer.  Not needed for jam, but better practice.
-            foreach (Transform t1 in enemies.transform) {
+            foreach (Transform t1 in Enemies.transform) {
                 foreach (Transform t2 in t1) {
-                    if (playerCollider.IsTouching(t2.gameObject.GetComponent<Collider2D>())) {
-                        health.Value--;
-                        timeOfEnemyCollision = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-                        isHurt = true;
-                        rigidBody.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
-                        animator.enabled = false;
-                        spriteRenderer.sprite = hurtSprite;
-                        audioSource.clip = oofClip;
-                        audioSource.Play();
+                    if (PlayerCollider.IsTouching(t2.gameObject.GetComponent<Collider2D>())) {
+                        Health.Value--;
+                        TimeOfEnemyCollision = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+                        IsHurt = true;
+                        RigidbodyComponent.AddForce(transform.up * JumpPower, ForceMode2D.Impulse);
+                        AnimatorComponent.enabled = false;
+                        SpriteRendererComponent.sprite = HurtSprite;
+                        AudioClipSource.clip = HurtClip;
+                        AudioClipSource.Play();
                         break;
                     }
                 }
             }
         } else {
-            long elapsed = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - timeOfEnemyCollision;
+            long elapsed = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - TimeOfEnemyCollision;
             if (elapsed % 400 < 200) {
-                spriteRenderer.color = new Color(1, 1, 1, 1);
+                SpriteRendererComponent.color = new Color(1, 1, 1, 1);
             } else {
-                spriteRenderer.color = new Color(1, 0.5f, 0.5f, 1);
+                SpriteRendererComponent.color = new Color(1, 0.5f, 0.5f, 1);
             }
             if (elapsed >= 2000) {
-                isHurt = false;
-                animator.enabled = true;
+                IsHurt = false;
+                AnimatorComponent.enabled = true;
             }
         }
         
         // Check for death and respawn
         if (transform.position.y < -25.0f) {
-            audioSource.clip = oofClip;
-            audioSource.Play();
+            AudioClipSource.clip = HurtClip;
+            AudioClipSource.Play();
         }
-        if (health.Value <= 0 || transform.position.y < -25.0f) {
-            transform.position = initialPosition;
-            health.Value = health.InitialValue;
-            rigidBody.velocity = Vector2.zero;
-            spriteRenderer.color = new Color(1, 1, 1, 1);
-            isHurt = false;
-            animator.enabled = true;
+        if (Health.Value <= 0 || transform.position.y < -25.0f) {
+            transform.position = InitialPosition;
+            Health.Value = Health.InitialValue;
+            RigidbodyComponent.velocity = Vector2.zero;
+            SpriteRendererComponent.color = new Color(1, 1, 1, 1);
+            IsHurt = false;
+            AnimatorComponent.enabled = true;
 
             // Respawn Fly men
-            foreach (Transform t1 in enemies.transform) {
+            foreach (Transform t1 in Enemies.transform) {
                 if (t1.gameObject.name != "Fly Men") continue;
 
                 foreach (Transform t2 in t1) {
@@ -138,14 +138,14 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnGamePause() {
-        prePauseVelocity = rigidBody.velocity;
-        rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
-        animator.enabled = false;
+        PrePauseVelocity = RigidbodyComponent.velocity;
+        RigidbodyComponent.constraints = RigidbodyConstraints2D.FreezeAll;
+        AnimatorComponent.enabled = false;
     }
 
     public void OnGameUnpause() {
-        rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
-        rigidBody.velocity = prePauseVelocity;
-        animator.enabled = true;
+        RigidbodyComponent.constraints = RigidbodyConstraints2D.FreezeRotation;
+        RigidbodyComponent.velocity = PrePauseVelocity;
+        AnimatorComponent.enabled = true;
     }
 }

@@ -4,45 +4,45 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PortalController : MonoBehaviour {
-    public Text uiText;
-    private BlackFadeController blackFadeController;
-    private bool isPlayerInPortal;
-    private long timeOfEntry;
+    private Text TextComponent;
+    private BlackFadeController BlackFadeControllerScript;
+    private bool IsPlayerInPortal;
+    private long TimeOfEntry;
     
     public void Start() {
-        uiText = GameObject.Find("Portal Text").GetComponent<Text>();
-        blackFadeController = GameObject.Find("Black Fade").GetComponent<BlackFadeController>();
-        uiText.text = "";
+        TextComponent = GameObject.Find("Portal Text").GetComponent<Text>();
+        BlackFadeControllerScript = GameObject.Find("Black Fade").GetComponent<BlackFadeController>();
+        TextComponent.text = "";
     }
 
     public void Update() {
-        if (!isPlayerInPortal) {
-            uiText.text = "";
+        if (!IsPlayerInPortal) {
+            TextComponent.text = "";
             return;
         }
 
-        long elapsed = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - timeOfEntry;
+        long elapsed = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - TimeOfEntry;
         if (elapsed < 1000) {
-            uiText.text = "3";
+            TextComponent.text = "3";
         } else if (elapsed < 2000) {
-            uiText.text = "2";
+            TextComponent.text = "2";
         } else if (elapsed < 3000) {
-            uiText.text = "1";
+            TextComponent.text = "1";
         } else {
-            blackFadeController.FadeToNextScene();
+            BlackFadeControllerScript.FadeToNextScene();
         }
     }
 
     public void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.name != "Player") return;
 
-        isPlayerInPortal = true;
-        timeOfEntry = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+        IsPlayerInPortal = true;
+        TimeOfEntry = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
     }
 
     public void OnTriggerExit2D(Collider2D other) {
         if (other.gameObject.name != "Player") return;
 
-        isPlayerInPortal = false;
+        IsPlayerInPortal = false;
     }
 }

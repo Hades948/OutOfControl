@@ -205,17 +205,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d1eb9ba0aa0dcb4a831b09d03e32860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 15
-  speed: 1.7
-  oofClip: {fileID: 8300000, guid: f5bd275e6b0fad94e9e3eb4421753cfb, type: 3}
-  boingClip: {fileID: 8300000, guid: f655617070120b34284cd4fe53696933, type: 3}
-  health: {fileID: 11400000, guid: 30710ebb8d81ce946a28631cfd139b19, type: 2}
-  currentLeftKeyCode: {fileID: 11400000, guid: 8aab37037b2385145a50bd141a523e5d, type: 2}
-  currentRightKeyCode: {fileID: 11400000, guid: 060fe9d7afed05441b868df519df92d3,
-    type: 2}
-  currentJumpKeyCode: {fileID: 11400000, guid: c175758525441034587291a0a052bb3c, type: 2}
-  gameInfo: {fileID: 11400000, guid: 0ac6e3a9befc1d942b701274ba096202, type: 2}
-  hurtSprite: {fileID: 21300000, guid: 69b2cd64e6fbc4a4e9c6619e17e6f293, type: 3}
+  JumpPower: 15
+  Speed: 1.7
+  HurtClip: {fileID: 8300000, guid: f5bd275e6b0fad94e9e3eb4421753cfb, type: 3}
+  JumpClip: {fileID: 8300000, guid: f655617070120b34284cd4fe53696933, type: 3}
+  Health: {fileID: 11400000, guid: 30710ebb8d81ce946a28631cfd139b19, type: 2}
+  LeftKeyCode: {fileID: 11400000, guid: 8aab37037b2385145a50bd141a523e5d, type: 2}
+  RightKeyCode: {fileID: 11400000, guid: 060fe9d7afed05441b868df519df92d3, type: 2}
+  JumpKeyCode: {fileID: 11400000, guid: c175758525441034587291a0a052bb3c, type: 2}
+  HurtSprite: {fileID: 21300000, guid: 69b2cd64e6fbc4a4e9c6619e17e6f293, type: 3}
 --- !u!95 &6057886999168043964
 Animator:
   serializedVersion: 3
