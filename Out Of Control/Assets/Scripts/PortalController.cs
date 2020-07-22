@@ -9,13 +9,13 @@ public class PortalController : MonoBehaviour {
     private bool IsPlayerInPortal;
     private long TimeOfEntry;
     
-    public void Start() {
+    void Start() {
         TextComponent = GameObject.Find("Portal Text").GetComponent<Text>();
         BlackFadeControllerScript = GameObject.Find("Black Fade").GetComponent<BlackFadeController>();
         TextComponent.text = "";
     }
 
-    public void Update() {
+    void Update() {
         if (!IsPlayerInPortal) {
             TextComponent.text = "";
             return;
@@ -33,14 +33,14 @@ public class PortalController : MonoBehaviour {
         }
     }
 
-    public void OnTriggerEnter2D(Collider2D other) {
+    void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.name != "Player") return;
 
         IsPlayerInPortal = true;
         TimeOfEntry = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
     }
 
-    public void OnTriggerExit2D(Collider2D other) {
+    void OnTriggerExit2D(Collider2D other) {
         if (other.gameObject.name != "Player") return;
 
         IsPlayerInPortal = false;

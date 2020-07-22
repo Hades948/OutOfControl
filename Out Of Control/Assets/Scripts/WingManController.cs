@@ -4,49 +4,52 @@ using UnityEngine;
 using static System.Math;
 
 public class WingManController : MonoBehaviour {
-    public float height;
-    public float speed;
+    public float Height;
+    public float Speed;
+    
+    private Vector3 PositionAbove;
+    private Vector3 PositionBelow;
+    private Vector3 TargetPosition;
+    private Animator AnimatorComponent;
+
+    private bool IsPaused;
+
     private const float SPEED_UP = 0.95f;
     private const float SPEED_DOWN = 0.7f;
-    private Vector3 positionAbove;
-    private Vector3 positionBelow;
-    private Vector3 targetPosition;
-    private Animator animator;
-    private bool isPaused;
 
 
     void Start() {
-        positionAbove = new Vector3(transform.position.x, transform.position.y + height, transform.position.z);
-        positionBelow = new Vector3(transform.position.x, transform.position.y - height, transform.position.z);
-        targetPosition = positionAbove;
+        PositionAbove = new Vector3(transform.position.x, transform.position.y + Height, transform.position.z);
+        PositionBelow = new Vector3(transform.position.x, transform.position.y - Height, transform.position.z);
+        TargetPosition = PositionAbove;
 
-        animator = gameObject.GetComponent<Animator>();
-        animator.speed = SPEED_UP;
+        AnimatorComponent = gameObject.GetComponent<Animator>();
+        AnimatorComponent.speed = SPEED_UP;
     }
 
     void FixedUpdate() {
-        if (isPaused) return; // TODO Use rigidbody on enemies.  Update this when that happens.
+        if (IsPaused) return; // TODO Use rigidbody on enemies.  Update this when that happens.
 
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, TargetPosition, Speed * Time.deltaTime);
 
-        if (transform.position == targetPosition) {
-            if (targetPosition == positionAbove) {
-                targetPosition = positionBelow;
-                animator.speed = SPEED_DOWN;
-            } else if (targetPosition == positionBelow) {
-                targetPosition = positionAbove;
-                animator.speed = SPEED_UP;
+        if (transform.position == TargetPosition) {
+            if (TargetPosition == PositionAbove) {
+                TargetPosition = PositionBelow;
+                AnimatorComponent.speed = SPEED_DOWN;
+            } else if (TargetPosition == PositionBelow) {
+                TargetPosition = PositionAbove;
+                AnimatorComponent.speed = SPEED_UP;
             }
         }
     }
 
     public void OnGamePaused() {
-        isPaused = true;
-        animator.enabled = false;
+        IsPaused = true;
+        AnimatorComponent.enabled = false;
     }
 
     public void OnGameUnpaused() {
-        isPaused = false;
-        animator.enabled = true;
+        IsPaused = false;
+        AnimatorComponent.enabled = true;
     }
 }

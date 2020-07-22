@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
     public float JumpPower;
@@ -81,33 +82,35 @@ public class PlayerController : MonoBehaviour {
         AnimatorComponent.SetBool("inAir", inAir);
 
         // Check enemy collisions
-        if (!IsHurt) {
-            // TODO: This could be done with callbacks a bit nicer.  Not needed for jam, but better practice.
-            foreach (Transform t1 in Enemies.transform) {
-                foreach (Transform t2 in t1) {
-                    if (PlayerCollider.IsTouching(t2.gameObject.GetComponent<Collider2D>())) {
-                        Health.Value--;
-                        TimeOfEnemyCollision = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-                        IsHurt = true;
-                        RigidbodyComponent.AddForce(transform.up * JumpPower, ForceMode2D.Impulse);
-                        AnimatorComponent.enabled = false;
-                        SpriteRendererComponent.sprite = HurtSprite;
-                        AudioClipSource.clip = HurtClip;
-                        AudioClipSource.Play();
-                        break;
+        if (SceneManager.GetActiveScene().name != "Title Screen") {// TODO Try to do this better.
+            if (!IsHurt) {
+                // TODO: This could be done with callbacks a bit nicer.  Not needed for jam, but better practice.
+                foreach (Transform t1 in Enemies.transform) {
+                    foreach (Transform t2 in t1) {
+                        if (PlayerCollider.IsTouching(t2.gameObject.GetComponent<Collider2D>())) {
+                            Health.Value--;
+                            TimeOfEnemyCollision = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+                            IsHurt = true;
+                            RigidbodyComponent.AddForce(transform.up * JumpPower, ForceMode2D.Impulse);
+                            AnimatorComponent.enabled = false;
+                            SpriteRendererComponent.sprite = HurtSprite;
+                            AudioClipSource.clip = HurtClip;
+                            AudioClipSource.Play();
+                            break;
+                        }
                     }
                 }
-            }
-        } else {
-            long elapsed = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - TimeOfEnemyCollision;
-            if (elapsed % 400 < 200) {
-                SpriteRendererComponent.color = new Color(1, 1, 1, 1);
             } else {
-                SpriteRendererComponent.color = new Color(1, 0.5f, 0.5f, 1);
-            }
-            if (elapsed >= 2000) {
-                IsHurt = false;
-                AnimatorComponent.enabled = true;
+                long elapsed = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - TimeOfEnemyCollision;
+                if (elapsed % 400 < 200) {
+                    SpriteRendererComponent.color = new Color(1, 1, 1, 1);
+                } else {
+                    SpriteRendererComponent.color = new Color(1, 0.5f, 0.5f, 1);
+                }
+                if (elapsed >= 2000) {
+                    IsHurt = false;
+                    AnimatorComponent.enabled = true;
+                }
             }
         }
         
@@ -125,14 +128,16 @@ public class PlayerController : MonoBehaviour {
             AnimatorComponent.enabled = true;
 
             // Respawn Fly men
-            foreach (Transform t1 in Enemies.transform) {
-                if (t1.gameObject.name != "Fly Men") continue;
+            if (SceneManager.GetActiveScene().name != "Title Screen") {// TODO Try to do this better.
+                foreach (Transform t1 in Enemies.transform) {
+                    if (t1.gameObject.name != "Fly Men") continue;
 
-                foreach (Transform t2 in t1) {
-                    t2.gameObject.GetComponent<FlyManController>().respawn();
+                    foreach (Transform t2 in t1) {
+                        t2.gameObject.GetComponent<FlyManController>().respawn();
+                    }
+
+                    break;
                 }
-
-                break;
             }
         }
     }

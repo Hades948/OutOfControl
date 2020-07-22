@@ -3,79 +3,80 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FlyManController : MonoBehaviour {
-    public float speed;
-    public float jumpHeight;
-    private Vector3 jumpPower;
-    private Vector3 initialPosition;
-    private Rigidbody2D rigidBody;
-    private Collider2D flyManCollider;
-    private Animator animator;
-    private GameObject platforms;
-    private Vector2 prePauseVelocity;
+    public float Speed;
+    public float JumpHeight;
 
-    private bool hasSpawned = false;
-    private bool isPaused = false;
+    private Vector3 JumpPower;
+    private Vector3 InitialPosition;
+    private Rigidbody2D RigidbodyComponent;
+    private Collider2D ColliderComponent;
+    private Animator AnimatorComponent;
+    private GameObject Platforms;
+    private Vector2 PrePauseVelocity;
+
+    private bool HasSpawned = false;
+    private bool IsPaused = false;
 
     void Start() {
-        jumpPower = new Vector3(1.0f, jumpHeight, 1.0f);
+        JumpPower = new Vector3(1.0f, JumpHeight, 1.0f);
         
-        rigidBody = gameObject.GetComponent<Rigidbody2D>();
-        animator = gameObject.GetComponent<Animator>();
-        platforms = GameObject.Find("Platforms");
+        RigidbodyComponent = gameObject.GetComponent<Rigidbody2D>();
+        AnimatorComponent = gameObject.GetComponent<Animator>();
+        Platforms = GameObject.Find("Platforms");
 
         // Iterate through object children to find feet collider.
         foreach (Transform t in transform) {
             if (t.gameObject.name == "Fly Man Feet Collider") {
-                flyManCollider = t.gameObject.GetComponent<BoxCollider2D>();
+                ColliderComponent = t.gameObject.GetComponent<BoxCollider2D>();
                 break;
             }
         }
 
-        initialPosition = transform.position;
+        InitialPosition = transform.position;
     }
 
     void FixedUpdate() {
-        if (!hasSpawned) return;
-        if (isPaused) return;
+        if (!HasSpawned) return;
+        if (IsPaused) return;
         
-        transform.position = new Vector3(transform.position.x + speed * Time.deltaTime, transform.position.y, transform.position.z);
+        transform.position = new Vector3(transform.position.x + Speed * Time.deltaTime, transform.position.y, transform.position.z);
 
         bool inAir = true;
-        foreach (Transform t in platforms.transform) {
-            if (flyManCollider.IsTouching(t.gameObject.GetComponent<Collider2D>())) {
+        foreach (Transform t in Platforms.transform) {
+            if (ColliderComponent.IsTouching(t.gameObject.GetComponent<Collider2D>())) {
                 inAir = false;
                 break;
             }
         }
 
         if (!inAir) {
-            rigidBody.AddForce(jumpPower);
+            RigidbodyComponent.AddForce(JumpPower);
         }
 
-        animator.SetBool("inAir", inAir);
+        AnimatorComponent.SetBool("inAir", inAir);
     }
 
-    public void OnBecameVisible() {
-        hasSpawned = true;
+    void OnBecameVisible() {
+        HasSpawned = true;
     }
 
     public void respawn() {
-        hasSpawned = false;
-        transform.position = initialPosition;
-        rigidBody.velocity = Vector2.zero;
+        HasSpawned = false;
+        transform.position = InitialPosition;
+        RigidbodyComponent.velocity = Vector2.zero;
     }
 
     public void OnGamePause() {
-        prePauseVelocity = rigidBody.velocity;
-        rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
-        animator.enabled = false;
-        isPaused = true;
+        PrePauseVelocity = RigidbodyComponent.velocity;
+        RigidbodyComponent.constraints = RigidbodyConstraints2D.FreezeAll;
+        AnimatorComponent.enabled = false;
+        IsPaused = true;
     }
 
     public void OnGameUnpause() {
-        rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
-        rigidBody.velocity = prePauseVelocity;
-        animator.enabled = true;
-        isPaused = false;
+        RigidbodyComponent.constraints = RigidbodyConstraints2D.FreezeRotation;
+        RigidbodyComponent.velocity = PrePauseVelocity;
+        AnimatorComponent.enabled = true;
+        IsPaused = false;
     }
 }

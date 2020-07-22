@@ -4,47 +4,50 @@ using UnityEngine;
 using static System.Math;
 
 public class SpikeManController : MonoBehaviour {
-    public float width;
-    public float speed;
-    private Vector3 positionLeft;
-    private Vector3 positionRight;
-    private Vector3 targetPosition;
-    private Animator animator;
+    public float Width;
+    public float Speed;
+
+    private Vector3 PositionLeft;
+    private Vector3 PositionRight;
+    private Vector3 TargetPosition;
+    private Animator AnimatorComponent;
+
+    private bool IsPaused;
+
     private const int LEFT = 0;
     private const int RIGHT = 1;
-    private bool isPaused;
 
 
     void Start() {
-        positionLeft = new Vector3(transform.position.x - width, transform.position.y, transform.position.z);
-        positionRight = new Vector3(transform.position.x + width, transform.position.y, transform.position.z);
-        targetPosition = positionLeft;
+        PositionLeft = new Vector3(transform.position.x - Width, transform.position.y, transform.position.z);
+        PositionRight = new Vector3(transform.position.x + Width, transform.position.y, transform.position.z);
+        TargetPosition = PositionLeft;
 
-        animator = gameObject.GetComponent<Animator>();
+        AnimatorComponent = gameObject.GetComponent<Animator>();
     }
 
     void FixedUpdate() {
-        if (isPaused) return;
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        if (IsPaused) return;
+        transform.position = Vector3.MoveTowards(transform.position, TargetPosition, Speed * Time.deltaTime);
 
-        if (transform.position == targetPosition) {
-            if (targetPosition == positionLeft) {
-                targetPosition = positionRight;
-                animator.SetInteger("Direction", RIGHT);
-            } else if (targetPosition == positionRight) {
-                targetPosition = positionLeft;
-                animator.SetInteger("Direction", LEFT);
+        if (transform.position == TargetPosition) {
+            if (TargetPosition == PositionLeft) {
+                TargetPosition = PositionRight;
+                AnimatorComponent.SetInteger("Direction", RIGHT);
+            } else if (TargetPosition == PositionRight) {
+                TargetPosition = PositionLeft;
+                AnimatorComponent.SetInteger("Direction", LEFT);
             }
         }
     }
 
     public void OnGamePaused() {
-        isPaused = true;
-        animator.enabled = false;
+        IsPaused = true;
+        AnimatorComponent.enabled = false;
     }
 
     public void OnGameUnpaused() {
-        isPaused = false;
-        animator.enabled = true;
+        IsPaused = false;
+        AnimatorComponent.enabled = true;
     }
 }

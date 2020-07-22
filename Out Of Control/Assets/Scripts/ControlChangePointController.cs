@@ -11,11 +11,11 @@ public class ControlChangePointController : MonoBehaviour {
     private SpriteRenderer SpriteRendererComponent;
     public Text TextComponent;
 
-    public void Start() {
+    void Start() {
         SpriteRendererComponent = gameObject.GetComponent<SpriteRenderer>();
     }
 
-    public void OnTriggerEnter2D(Collider2D other) {
+    void OnTriggerEnter2D(Collider2D other) {
         if (HasPlayerEntered) return;
         if (other.gameObject.name != "Player") return;
 
