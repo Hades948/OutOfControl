@@ -54,6 +54,8 @@
      <Compile Include="Assets\Scripts\BlackFadeController.cs" />
      <Compile Include="Assets\Scripts\Button Controllers\PauseButtonController.cs" />
      <Compile Include="Assets\Scripts\Button Controllers\QuitButtonController.cs" />
+     <Compile Include="Assets\Scripts\Button Controllers\SwitchScenesByIndexButtonController.cs" />
+     <Compile Include="Assets\Scripts\Button Controllers\SwitchScenesByNameButtonController.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\ControlChangePointController.cs" />
      <Compile Include="Assets\Scripts\ControlLabelController.cs" />
