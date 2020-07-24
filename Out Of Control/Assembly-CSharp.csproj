@@ -50,7 +50,6 @@
      <Compile Include="Assets\Scriptable Objects\GameManagerScriptableObject.cs" />
      <Compile Include="Assets\Scriptable Objects\HealthScriptableObject.cs" />
      <Compile Include="Assets\Scriptable Objects\KeyCodeScriptableObject.cs" />
-     <Compile Include="Assets\Scripts\AudioController.cs" />
      <Compile Include="Assets\Scripts\BlackFadeController.cs" />
      <Compile Include="Assets\Scripts\Button Controllers\PauseButtonController.cs" />
      <Compile Include="Assets\Scripts\Button Controllers\QuitButtonController.cs" />
@@ -64,6 +63,7 @@
      <Compile Include="Assets\Scripts\GameUIController.cs" />
      <Compile Include="Assets\Scripts\HealthDisplayController.cs" />
      <Compile Include="Assets\Scripts\InputManagerController.cs" />
+     <Compile Include="Assets\Scripts\MusicManagerController.cs" />
      <Compile Include="Assets\Scripts\PauseUIController.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PortalController.cs" />
