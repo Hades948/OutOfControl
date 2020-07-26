@@ -1,0 +1,8 @@
+## Wacky Bunny Change Log   
+
+Post-Jam Release   
+* Added pause button   
+* Added title screen   
+* Cleaned up UI   
+* Removed control switching   
+* Now playable in upto 4K resolution   
