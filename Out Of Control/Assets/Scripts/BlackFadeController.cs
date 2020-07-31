@@ -9,6 +9,7 @@ public class BlackFadeController : MonoBehaviour {
     }
 
     public void FadeToScene(string name) {
+        Debug.Log(name);
         FadeToScene(SceneUtility.GetBuildIndexByScenePath("Scenes/" + name));
     }
 

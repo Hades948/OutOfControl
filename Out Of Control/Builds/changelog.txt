@@ -1,5 +1,8 @@
 ## Wacky Bunny Change Log   
-
+   
+beta1   
+* Added temp. level selection screen.
+   
 Post-Jam Release   
 * Added pause button   
 * Added title screen   
