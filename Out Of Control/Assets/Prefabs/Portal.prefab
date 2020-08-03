@@ -121,4 +121,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 426ed57bc73dd8843b2a364b134ab05d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiText: {fileID: 0}
+  SaveData: {fileID: 11400000, guid: bfadf886ed3579342b88bdafcec24d9e, type: 2}

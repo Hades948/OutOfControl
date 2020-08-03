@@ -4,14 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MusicManagerController : MonoBehaviour {
-    private static bool IsRunning = false;
-    
-    void Start() {
-        if (IsRunning) {
-            Destroy(gameObject);
-        } else {
-            DontDestroyOnLoad(gameObject);
-            IsRunning = true;
-        }
+    void Awake() {
+        DontDestroyOnLoad(gameObject);
     }
 }
