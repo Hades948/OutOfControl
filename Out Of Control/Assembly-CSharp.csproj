@@ -49,7 +49,6 @@
      <Compile Include="Assets\Events\GameEventListener.cs" />
      <Compile Include="Assets\Scriptable Objects\GameManagerScriptableObject.cs" />
      <Compile Include="Assets\Scriptable Objects\HealthScriptableObject.cs" />
-     <Compile Include="Assets\Scriptable Objects\KeyCodeScriptableObject.cs" />
      <Compile Include="Assets\Scripts\BlackFadeController.cs" />
      <Compile Include="Assets\Scripts\Button Controllers\LevelSwitchButtonController.cs" />
      <Compile Include="Assets\Scripts\Button Controllers\PauseButtonController.cs" />
@@ -57,8 +56,6 @@
      <Compile Include="Assets\Scripts\Button Controllers\SwitchScenesByIndexButtonController.cs" />
      <Compile Include="Assets\Scripts\Button Controllers\SwitchScenesByNameButtonController.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
-     <Compile Include="Assets\Scripts\ControlChangePointController.cs" />
-     <Compile Include="Assets\Scripts\ControlLabelController.cs" />
      <Compile Include="Assets\Scripts\CreditsController.cs" />
      <Compile Include="Assets\Scripts\FlyManController.cs" />
      <Compile Include="Assets\Scripts\GameManagerController.cs" />

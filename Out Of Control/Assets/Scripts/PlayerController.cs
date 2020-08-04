@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour {
     public float Speed;
     public AudioClip HurtClip, JumpClip;
     public HealthScriptableObject Health;
-    public KeyCodeScriptableObject LeftKeyCode, RightKeyCode, JumpKeyCode;
     public Sprite HurtSprite;
 
     private Rigidbody2D RigidbodyComponent;
@@ -27,6 +26,7 @@ public class PlayerController : MonoBehaviour {
     private bool IsHurt = false;
 
     private const float DEADZONE = 0.1f;
+    private const float MAX_SPEED = 20.0f;
     private const int LEFT = -1, IDLE = 0, RIGHT = 1;
 
     void Start() {
@@ -43,24 +43,23 @@ public class PlayerController : MonoBehaviour {
 
         // Set up SOs
         Health.Value = Health.InitialValue;
-        LeftKeyCode.CurrentKeyCode = LeftKeyCode.InitialKeyCode;
-        RightKeyCode.CurrentKeyCode = RightKeyCode.InitialKeyCode;
-        JumpKeyCode.CurrentKeyCode = JumpKeyCode.InitialKeyCode;
     }
 
     void FixedUpdate() {
         // Horizontal movement
-        if (Input.GetKey(RightKeyCode.CurrentKeyCode)) {
+        float horizontalAxis = Input.GetAxis("Horizontal");
+        if (horizontalAxis > DEADZONE) {
             // Move right.
             RigidbodyComponent.AddForce(transform.right * Speed, ForceMode2D.Impulse);
             AnimatorComponent.SetInteger("direction", RIGHT);
-        } else if (Input.GetKey(LeftKeyCode.CurrentKeyCode)) {
+        } else if (horizontalAxis < -DEADZONE) {
             // Move left.
             RigidbodyComponent.AddForce(-transform.right * Speed, ForceMode2D.Impulse);
             AnimatorComponent.SetInteger("direction", LEFT);
         } else {
             AnimatorComponent.SetInteger("direction", IDLE);
         }
+        RigidbodyComponent.velocity = new Vector2(Mathf.Clamp(RigidbodyComponent.velocity.x, -MAX_SPEED, MAX_SPEED), RigidbodyComponent.velocity.y);
 
         // Test if in air
         bool inAir = true;
@@ -74,7 +73,8 @@ public class PlayerController : MonoBehaviour {
         }
 
         // Jumping movement
-        if (Input.GetKey(JumpKeyCode.CurrentKeyCode) && !inAir) {
+        float jumpAxis = Input.GetAxis("Jump");
+        if (jumpAxis > DEADZONE && !inAir) {
             RigidbodyComponent.AddForce(transform.up * JumpPower, ForceMode2D.Impulse);
             AudioClipSource.clip = JumpClip;
             AudioClipSource.Play();
@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour {
                             Health.Value--;
                             TimeOfEnemyCollision = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
                             IsHurt = true;
+                            RigidbodyComponent.velocity = new Vector2(RigidbodyComponent.velocity.x, 0);
                             RigidbodyComponent.AddForce(transform.up * JumpPower, ForceMode2D.Impulse);
                             AnimatorComponent.enabled = false;
                             SpriteRendererComponent.sprite = HurtSprite;
