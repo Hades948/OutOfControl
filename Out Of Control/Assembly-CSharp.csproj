@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Events\GameEvent.cs" />
      <Compile Include="Assets\Events\GameEventListener.cs" />
+     <Compile Include="Assets\Scriptable Objects\BoundedFloatScriptableObject.cs" />
      <Compile Include="Assets\Scriptable Objects\GameManagerScriptableObject.cs" />
      <Compile Include="Assets\Scriptable Objects\HealthScriptableObject.cs" />
      <Compile Include="Assets\Scripts\BlackFadeController.cs" />
@@ -58,6 +59,7 @@
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\CreditsController.cs" />
      <Compile Include="Assets\Scripts\FlyManController.cs" />
+     <Compile Include="Assets\Scripts\FuelUIController.cs" />
      <Compile Include="Assets\Scripts\GameManagerController.cs" />
      <Compile Include="Assets\Scripts\GameUIController.cs" />
      <Compile Include="Assets\Scripts\HealthDisplayController.cs" />

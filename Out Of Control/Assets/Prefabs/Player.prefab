@@ -205,11 +205,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d1eb9ba0aa0dcb4a831b09d03e32860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpPower: 45
+  JumpPower: 4
   Speed: 2.3
   HurtClip: {fileID: 8300000, guid: f5bd275e6b0fad94e9e3eb4421753cfb, type: 3}
   JumpClip: {fileID: 8300000, guid: f655617070120b34284cd4fe53696933, type: 3}
   Health: {fileID: 11400000, guid: 30710ebb8d81ce946a28631cfd139b19, type: 2}
+  FuelLevel: {fileID: 11400000, guid: 4248f640b08284844b0a474b1e6c7a19, type: 2}
   HurtSprite: {fileID: 21300000, guid: 69b2cd64e6fbc4a4e9c6619e17e6f293, type: 3}
 --- !u!95 &6057886999168043964
 Animator:

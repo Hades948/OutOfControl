@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
     public float Speed;
     public AudioClip HurtClip, JumpClip;
     public HealthScriptableObject Health;
+    public BoundedFloatScriptableObject FuelLevel;
     public Sprite HurtSprite;
 
     private Rigidbody2D RigidbodyComponent;
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour {
 
     private long TimeOfEnemyCollision = -1;
     private bool IsHurt = false;
+    private float FuelDepletionRate = 150.0f;
 
     private const float DEADZONE = 0.1f;
     private const float MAX_SPEED = 20.0f;
@@ -43,6 +45,7 @@ public class PlayerController : MonoBehaviour {
 
         // Set up SOs
         Health.Value = Health.InitialValue;
+        FuelLevel.SetValue(FuelLevel.UpperBound);
     }
 
     void FixedUpdate() {
@@ -74,10 +77,13 @@ public class PlayerController : MonoBehaviour {
 
         // Jumping movement
         float jumpAxis = Input.GetAxis("Jump");
-        if (jumpAxis > DEADZONE && !inAir) {
+        if (jumpAxis > DEADZONE && FuelLevel.GetValue() > FuelLevel.LowerBound) {
             RigidbodyComponent.AddForce(transform.up * JumpPower, ForceMode2D.Impulse);
             AudioClipSource.clip = JumpClip;
             AudioClipSource.Play();
+            FuelLevel.ChangeValue(-FuelDepletionRate * Time.deltaTime);
+        } else if (!inAir) {
+            FuelLevel.ChangeValue(FuelDepletionRate * Time.deltaTime);
         }
         AnimatorComponent.SetBool("inAir", inAir);
 
@@ -91,8 +97,8 @@ public class PlayerController : MonoBehaviour {
                             Health.Value--;
                             TimeOfEnemyCollision = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
                             IsHurt = true;
-                            RigidbodyComponent.velocity = new Vector2(RigidbodyComponent.velocity.x, 0);
-                            RigidbodyComponent.AddForce(transform.up * JumpPower, ForceMode2D.Impulse);
+                            RigidbodyComponent.velocity = new Vector2(-RigidbodyComponent.velocity.x, 0);
+                            RigidbodyComponent.AddForce(transform.up * JumpPower * 10, ForceMode2D.Impulse);
                             AnimatorComponent.enabled = false;
                             SpriteRendererComponent.sprite = HurtSprite;
                             AudioClipSource.clip = HurtClip;
@@ -123,6 +129,7 @@ public class PlayerController : MonoBehaviour {
         if (Health.Value <= 0 || transform.position.y < -25.0f) {
             transform.position = InitialPosition;
             Health.Value = Health.InitialValue;
+            FuelLevel.SetValue(FuelLevel.UpperBound);
             RigidbodyComponent.velocity = Vector2.zero;
             SpriteRendererComponent.color = new Color(1, 1, 1, 1);
             IsHurt = false;
