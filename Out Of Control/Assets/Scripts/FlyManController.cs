@@ -2,8 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+* Controls the Fly Man enemy.
+*/
 public class FlyManController : MonoBehaviour {
+    /**
+    * Horizontal movement speed.
+    */
     public float Speed;
+
+    /**
+    * Height of jump.
+    */
     public float JumpHeight;
 
     private Vector3 JumpPower;
@@ -36,11 +46,14 @@ public class FlyManController : MonoBehaviour {
     }
 
     void FixedUpdate() {
+        // Don't update if not spawned yet or if the game is paused.
         if (!HasSpawned) return;
         if (IsPaused) return;
         
+        // Update position
         transform.position = new Vector3(transform.position.x + Speed * Time.deltaTime, transform.position.y, transform.position.z);
 
+        // Check if Fly Man is in the air.
         bool inAir = true;
         foreach (Transform t in Platforms.transform) {
             if (ColliderComponent.IsTouching(t.gameObject.GetComponent<Collider2D>())) {
@@ -49,6 +62,7 @@ public class FlyManController : MonoBehaviour {
             }
         }
 
+        // Jump as soon as the Fly Man hits the ground.
         if (!inAir) {
             RigidbodyComponent.AddForce(JumpPower);
         }
@@ -60,6 +74,9 @@ public class FlyManController : MonoBehaviour {
         HasSpawned = true;
     }
 
+    /**
+    * Used to respawn Fly Man when the player dies.
+    */
     public void respawn() {
         HasSpawned = false;
         transform.position = InitialPosition;

@@ -3,7 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using static System.Math;
 
+/**
+* Controls the Spike Man enemy's behavior.
+*/
 public class SpikeManController : MonoBehaviour {
+    /**
+    * Horizontal distance between the Spike Man's start point and furthest point.
+    */
     public float Width;
     public float Speed;
 
@@ -19,8 +25,11 @@ public class SpikeManController : MonoBehaviour {
 
 
     void Start() {
+        // Calculate target positions based on width.
         PositionLeft = new Vector3(transform.position.x - Width, transform.position.y, transform.position.z);
         PositionRight = new Vector3(transform.position.x + Width, transform.position.y, transform.position.z);
+
+        // Start Spike Man moving left.
         TargetPosition = PositionLeft;
 
         AnimatorComponent = gameObject.GetComponent<Animator>();
@@ -28,8 +37,11 @@ public class SpikeManController : MonoBehaviour {
 
     void FixedUpdate() {
         if (IsPaused) return;
+
+        // Update position.
         transform.position = Vector3.MoveTowards(transform.position, TargetPosition, Speed * Time.deltaTime);
 
+        // Change direction and target if the current target has been reached.
         if (transform.position == TargetPosition) {
             if (TargetPosition == PositionLeft) {
                 TargetPosition = PositionRight;

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+* Stores a float value bounded between a lower and upper bound.
+*/
 [CreateAssetMenu(fileName = "BoundedFloat", menuName = "ScriptableObjects/BoundedFloat")]
 public class BoundedFloatScriptableObject : ScriptableObject {
     public float LowerBound;

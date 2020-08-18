@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/**
+* Controls pause UI.
+*/
 public class PauseUIController : MonoBehaviour {
     private Canvas UICanvas;
 
@@ -12,10 +15,12 @@ public class PauseUIController : MonoBehaviour {
     }
 
     public void OnGamePaused() {
+        // Show UI when paused.
         UICanvas.enabled = true;
     }
 
     public void OnGameUnpaused() {
+        // Hide UI when unpaused.
         UICanvas.enabled = false;
     }
 }

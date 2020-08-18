@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/**
+* Controls the player.
+*/
 public class PlayerController : MonoBehaviour {
     public float JumpPower;
     public float Speed;

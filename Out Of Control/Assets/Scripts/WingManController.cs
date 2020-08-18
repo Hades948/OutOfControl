@@ -3,7 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using static System.Math;
 
+/**
+* Controls the Wing Man enemy's behavior.
+*/
 public class WingManController : MonoBehaviour {
+    /**
+    * Vertical distance between the Spike Man's start point and furthest point.
+    */
     public float Height;
     public float Speed;
     
@@ -14,13 +20,17 @@ public class WingManController : MonoBehaviour {
 
     private bool IsPaused;
 
+    // Speeds for the animator.
     private const float SPEED_UP = 0.95f;
     private const float SPEED_DOWN = 0.7f;
 
 
     void Start() {
+        // Calculate target positions based on height.
         PositionAbove = new Vector3(transform.position.x, transform.position.y + Height, transform.position.z);
         PositionBelow = new Vector3(transform.position.x, transform.position.y - Height, transform.position.z);
+        
+        // Start Wing Man moving up.
         TargetPosition = PositionAbove;
 
         AnimatorComponent = gameObject.GetComponent<Animator>();
@@ -30,8 +40,10 @@ public class WingManController : MonoBehaviour {
     void FixedUpdate() {
         if (IsPaused) return; // TODO Use rigidbody on enemies.  Update this when that happens.
 
+        // Update position.
         transform.position = Vector3.MoveTowards(transform.position, TargetPosition, Speed * Time.deltaTime);
 
+        // Change direction and target if the current target has been reached.
         if (transform.position == TargetPosition) {
             if (TargetPosition == PositionAbove) {
                 TargetPosition = PositionBelow;

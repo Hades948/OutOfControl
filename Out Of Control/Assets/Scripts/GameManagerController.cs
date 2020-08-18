@@ -5,6 +5,9 @@ using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
+/**
+* Contains info about the game's state.  Persists throughout all scenes.
+*/
 public class GameManagerController : MonoBehaviour {
     public int LevelProgress = 1;
 
@@ -22,6 +25,7 @@ public class GameManagerController : MonoBehaviour {
     }
 
     void OnApplicationQuit() {
+        // Auto save on game exit.
         SaveGame();
     }
 
