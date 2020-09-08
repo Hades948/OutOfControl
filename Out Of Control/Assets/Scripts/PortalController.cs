@@ -21,7 +21,10 @@ public class PortalController : MonoBehaviour {
         BlackFadeControllerScript = GameObject.Find("Black Fade").GetComponent<BlackFadeController>();
         TextComponent.text = "";
 
-        LevelNumber = Int32.Parse(SceneManager.GetActiveScene().name.Substring(6));
+        string sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName != "Test Environment Level") {
+            LevelNumber = Int32.Parse(sceneName.Substring(6));
+        }
     }
 
     void Update() {

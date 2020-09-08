@@ -59,7 +59,7 @@
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\CreditsController.cs" />
      <Compile Include="Assets\Scripts\FlyManController.cs" />
-     <Compile Include="Assets\Scripts\FuelUIController.cs" />
+     <Compile Include="Assets\Scripts\FuelGaugeController.cs" />
      <Compile Include="Assets\Scripts\GameManagerController.cs" />
      <Compile Include="Assets\Scripts\GameUIController.cs" />
      <Compile Include="Assets\Scripts\HealthDisplayController.cs" />

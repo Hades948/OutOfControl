@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour {
     private Collider2D PlayerCollider;
     private Collider2D PlayerFeetCollider;
     private SpriteRenderer SpriteRendererComponent;
+    private TrailRenderer TrailRendererComponent;
     private Animator AnimatorComponent;
     private AudioSource AudioClipSource;
     private GameObject Platforms;
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour {
         PlayerFeetCollider = GameObject.Find("Player Feet Collider").gameObject.GetComponent<BoxCollider2D>();
         PlayerCollider = gameObject.GetComponent<BoxCollider2D>();
         SpriteRendererComponent = gameObject.GetComponent<SpriteRenderer>();
+        TrailRendererComponent = GameObject.Find("Player Trail").GetComponent<TrailRenderer>();
         AnimatorComponent = gameObject.GetComponent<Animator>();
         AudioClipSource = gameObject.GetComponent<AudioSource>();
         Platforms = GameObject.Find("Platforms");
@@ -85,8 +87,12 @@ public class PlayerController : MonoBehaviour {
             AudioClipSource.clip = JumpClip;
             AudioClipSource.Play();
             FuelLevel.ChangeValue(-FuelDepletionRate * Time.deltaTime);
+            TrailRendererComponent.emitting = true;
         } else if (!inAir) {
             FuelLevel.ChangeValue(FuelDepletionRate * Time.deltaTime);
+            TrailRendererComponent.emitting = false;
+        } else {
+            TrailRendererComponent.emitting = false;
         }
         AnimatorComponent.SetBool("inAir", inAir);
 

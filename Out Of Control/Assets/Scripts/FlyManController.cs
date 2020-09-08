@@ -52,7 +52,7 @@ public class FlyManController : MonoBehaviour {
         
         // Update position
         transform.position = new Vector3(transform.position.x + Speed * Time.deltaTime, transform.position.y, transform.position.z);
-
+        
         // Check if Fly Man is in the air.
         bool inAir = true;
         foreach (Transform t in Platforms.transform) {
@@ -65,6 +65,7 @@ public class FlyManController : MonoBehaviour {
         // Jump as soon as the Fly Man hits the ground.
         if (!inAir) {
             RigidbodyComponent.AddForce(JumpPower);
+            transform.position = new Vector3(transform.position.x, transform.position.y + Speed * Time.deltaTime, transform.position.z);
         }
 
         AnimatorComponent.SetBool("inAir", inAir);

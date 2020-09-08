@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b82386ad5fc288047b93036d9f22a44c, type: 3}
   m_Name: Fuel
   m_EditorClassIdentifier: 
-  UpperBound: 100
   LowerBound: 0
+  UpperBound: 75
